@@ -6,7 +6,7 @@ package ca.bcit.comp2522.lab10.bam;
  * @author Ben Nguyen, Marcus Lages, Andre Dizon
  * @version 1.0
  */
-public class BankAccount {
+public final class BankAccount {
     private int currentBalance;
     private static final int NO_FUNDS = 0;
 
