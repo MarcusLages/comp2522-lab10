@@ -8,7 +8,7 @@ package ca.bcit.comp2522.lab10.bam;
  */
 public class BankAccount {
     private int currentBalance;
-    private String accountId;
+    private String bankAccountId;
     private static final int NO_FUNDS = 0;
     //you need to add another parameter for bank account id :0
     //Andre
@@ -21,7 +21,7 @@ public class BankAccount {
     public BankAccount(final int currentBalance) {
         validateCurrentBalance(currentBalance);
         this.currentBalance = currentBalance;
-        this.accountId = accountId;
+        this.bankAccountId = bankAccountId;
     }
 
     /**
