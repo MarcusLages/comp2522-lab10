@@ -20,6 +20,7 @@ public class BankAccount {
      */
     public BankAccount(final int currentBalance) {
         validateCurrentBalance(currentBalance);
+        validateAccountNumber(bankAccountId);
         this.currentBalance = currentBalance;
         this.bankAccountId = bankAccountId;
     }
