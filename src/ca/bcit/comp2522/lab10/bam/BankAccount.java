@@ -8,6 +8,7 @@ package ca.bcit.comp2522.lab10.bam;
  */
 public class BankAccount {
     private int currentBalance;
+    private String accountId;
     private static final int NO_FUNDS = 0;
     //you need to add another parameter for bank account id :0
     //Andre
@@ -20,6 +21,7 @@ public class BankAccount {
     public BankAccount(final int currentBalance) {
         validateCurrentBalance(currentBalance);
         this.currentBalance = currentBalance;
+        this.accountId = accountId;
     }
 
     /**
@@ -66,6 +68,11 @@ public class BankAccount {
     public void validateCurrentBalance(final int currentBalance) {
         if (currentBalance < NO_FUNDS) {
             throw new IllegalArgumentException("Initial balance cannot be negative.");
+        }
+    }
+    public void validateAccountNumber(final String accountNumber) {
+        if (accountNumber == null||accountNumber.isEmpty() || accountNumber.isBlank()) {
+            throw new IllegalArgumentException("Invalid question/answer. Input: " + accountNumber);
         }
     }
 }
