@@ -32,10 +32,10 @@ public class Bank {
      * @param accountId The unique identifier for the new account.
      * @param initialBalance The initial balance to be set for the new account.
      */
-    // Msrcus: put final u mon**y
-    public void addAccount(String accountId, double initialBalance) {
+    public void addAccount(final String accountId, final double initialBalance) {
         if (!accounts.containsKey(accountId)) {
-            final BankAccount newAccount = new BankAccount(accountId, initialBalance);
+            final BankAccount newAccount;
+            newAccount = new BankAccount(accountId, initialBalance);
             accounts.put(accountId, newAccount);
             System.out.println("Account created: " + newAccount);
         } else {
@@ -43,8 +43,7 @@ public class Bank {
         }
     }
 
-    // Marcus: missing method
-    public void addAccount(final BankAccount account) {}
+    public void addExistingAccount(final BankAccount account) {}
 
     /**
      * Retrieves a BankAccount by its account ID.

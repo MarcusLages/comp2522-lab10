@@ -35,6 +35,7 @@ public class BankAccount {
     public double getBalanceUSD() {
         return currentBalance;
     }
+
     public String getBankAccountId() {
         return bankAccountId;
     }
