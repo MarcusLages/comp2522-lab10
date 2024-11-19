@@ -9,7 +9,8 @@ package ca.bcit.comp2522.lab10.bam;
 public class BankAccount {
     private int currentBalance;
     private static final int NO_FUNDS = 0;
-
+    //you need to add another parameter for bank account id :0
+    //Andre
     /**
      * Constructs a BankAccount object with the specified initial balance.
      *
