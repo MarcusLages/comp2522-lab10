@@ -59,7 +59,7 @@ public class BankAccount {
      */
     public void withdraw(final int amount) {
         if (amount > currentBalance) {
-            throw new IllegalArgumentException("Insufficient funds.");
+            throw new IllegalArgumentException("Insufficient funds");
         }
         currentBalance -= amount;
     }
@@ -69,7 +69,6 @@ public class BankAccount {
      * @param bankAccountReceiver the bank account receiving money.
      * @param bankAccountId the bank account sending money.
      * @param amount the amount to deposit, must be a positive value.
-     * @throws IllegalArgumentException if the deposit amount is negative.
      */
     public void transferToBank(final BankAccount bankAccountReceiver, final String bankAccountId, final int amount) {
         if (bankAccountId.equals(this.bankAccountId)) {

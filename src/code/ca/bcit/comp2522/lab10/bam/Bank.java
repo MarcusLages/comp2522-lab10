@@ -71,6 +71,7 @@ public class Bank {
     // Marcus: Put the currency, like getTotalBalanceUSD()
     public double getTotalBalance() {
         // Marcus: magic number
+        // Marcus: not working, use a keyset
         double total = 0;
         for (final BankAccount account : accounts.values()) {
             total += account.getBalanceUSD();
