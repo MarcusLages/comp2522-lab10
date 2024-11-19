@@ -38,10 +38,6 @@ public class BankAccount {
     public String getBankAccountId() {
         return bankAccountId;
     }
-
-    // Marcus: transfer to bank
-//    account1.transferToBank(account2, "12345", 200);
-
     /**
      * Deposits the specified amount into the account.
      *
@@ -67,7 +63,20 @@ public class BankAccount {
         }
         currentBalance -= amount;
     }
-
+    /**
+     * Deposits the specified amount into another account
+     *
+     * @param bankAccountReceiver the bank account receiving money.
+     * @param bankAccountId the bank account sending money.
+     * @param amount the amount to deposit, must be a positive value.
+     * @throws IllegalArgumentException if the deposit amount is negative.
+     */
+    public void transferToBank(final BankAccount bankAccountReceiver, final String bankAccountId, final int amount) {
+        if (bankAccountId.equals(this.bankAccountId)) {
+            bankAccountReceiver.deposit(amount);
+            withdraw(amount);
+        }
+    }
     /**
      * Validates the specified initial balance to ensure it is non-negative.
      *
@@ -84,4 +93,5 @@ public class BankAccount {
             throw new IllegalArgumentException("Invalid question/answer. Input: " + accountNumber);
         }
     }
+
 }
