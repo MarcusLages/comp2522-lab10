@@ -32,6 +32,7 @@ public class Bank {
      * @param accountId The unique identifier for the new account.
      * @param initialBalance The initial balance to be set for the new account.
      */
+    // Msrcus: put final u mon**y
     public void addAccount(String accountId, double initialBalance) {
         if (!accounts.containsKey(accountId)) {
             final BankAccount newAccount = new BankAccount(accountId, initialBalance);
@@ -42,6 +43,9 @@ public class Bank {
         }
     }
 
+    // Marcus: missing method
+    public void addAccount(final BankAccount account) {}
+
     /**
      * Retrieves a BankAccount by its account ID.
      * If the account does not exist, a message is printed and null is returned.
@@ -49,6 +53,7 @@ public class Bank {
      * @param accountId The unique identifier of the account to retrieve.
      * @return The BankAccount associated with the given ID, or null if not found.
      */
+    // Marcus: this should be public
     private BankAccount getAccount(final String accountId) {
         if (accountExists(accountId)) {
             return accounts.get(accountId);
@@ -63,7 +68,9 @@ public class Bank {
      *
      * @return The total balance of all accounts in the bank.
      */
+    // Marcus: Put the currency, like getTotalBalanceUSD()
     public double getTotalBalance() {
+        // Marcus: magic number
         double total = 0;
         for (final BankAccount account : accounts.values()) {
             total += account.getBalanceUSD();

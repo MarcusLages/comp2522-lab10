@@ -1,4 +1,5 @@
 package ca.bcit.comp2522.lab10.bam;
+
 /**
  * Represents a bank account with basic operations to deposit, withdraw,
  * and retrieve the current balance.
@@ -37,6 +38,9 @@ public class BankAccount {
     public String getBankAccountId() {
         return bankAccountId;
     }
+
+    // Marcus: transfer to bank
+//    account1.transferToBank(account2, "12345", 200);
 
     /**
      * Deposits the specified amount into the account.
