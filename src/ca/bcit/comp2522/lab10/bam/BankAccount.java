@@ -7,7 +7,7 @@ package ca.bcit.comp2522.lab10.bam;
  * @version 1.0
  */
 public class BankAccount {
-    private int currentBalance;
+    private double currentBalance;
     private String bankAccountId;
     private static final int NO_FUNDS = 0;
     //you need to add another parameter for bank account id :0
@@ -15,13 +15,14 @@ public class BankAccount {
     /**
      * Constructs a BankAccount object with the specified initial balance.
      *
-     * @param currentBalance the initial balance of the account in USD.
+     * @param initialBalance the initial balance of the account in USD.
      * @throws IllegalArgumentException if the initial balance is negative.
      */
-    public BankAccount(final int currentBalance) {
-        validateCurrentBalance(currentBalance);
+    public BankAccount(final String bankAccountId, final double initialBalance) {
+        validateCurrentBalance(initialBalance);
         validateAccountNumber(bankAccountId);
-        this.currentBalance = currentBalance;
+
+        this.currentBalance = initialBalance;
         this.bankAccountId = bankAccountId;
     }
 
@@ -30,7 +31,7 @@ public class BankAccount {
      *
      * @return the current balance.
      */
-    public int getBalanceUSD() {
+    public double getBalanceUSD() {
         return currentBalance;
     }
 
@@ -66,7 +67,7 @@ public class BankAccount {
      * @param currentBalance the balance to validate.
      * @throws IllegalArgumentException if the balance is negative.
      */
-    public void validateCurrentBalance(final int currentBalance) {
+    public void validateCurrentBalance(final double currentBalance) {
         if (currentBalance < NO_FUNDS) {
             throw new IllegalArgumentException("Initial balance cannot be negative.");
         }
