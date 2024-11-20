@@ -69,10 +69,10 @@ public class BankApplicationTests {
 
     @Test
     void totalBalanceCalculationForBanks() {
-        assertEquals(1000, bank1.getTotalBalance());
-        assertEquals(500, bank2.getTotalBalance());
+        assertEquals(1000, bank1.getTotalBalanceUSD());
+        assertEquals(500, bank2.getTotalBalanceUSD());
         bank1.addAccount(new BankAccount("33333", 200));
-        assertEquals(1200, bank1.getTotalBalance());
+        assertEquals(1200, bank1.getTotalBalanceUSD());
     }
 
     @Test

@@ -14,6 +14,7 @@ import java.util.Map;
  * @version 1.0
  */
 public class Bank {
+    private static final double NO_BALANCE = 0.0;
 
     /** A map that stores the BankAccount objects, keyed by their account IDs */
     private final Map<String, BankAccount> accounts;
@@ -43,7 +44,15 @@ public class Bank {
         }
     }
 
-    public void addExistingAccount(final BankAccount account) {}
+    public void addAccount(final BankAccount account) {
+        String accountId = account.getBankAccountId();
+        if (!accounts.containsKey(accountId)) {
+            accounts.put(accountId, account);
+            System.out.println("Account added: " + account);
+        } else {
+            System.out.println("Account with ID " + accountId + " already exists.");
+        }
+    }
 
     /**
      * Retrieves a BankAccount by its account ID.
@@ -52,8 +61,7 @@ public class Bank {
      * @param accountId The unique identifier of the account to retrieve.
      * @return The BankAccount associated with the given ID, or null if not found.
      */
-    // Marcus: this should be public
-    private BankAccount getAccount(final String accountId) {
+    public BankAccount getAccount(final String accountId) {
         if (accountExists(accountId)) {
             return accounts.get(accountId);
         } else {
@@ -67,13 +75,15 @@ public class Bank {
      *
      * @return The total balance of all accounts in the bank.
      */
-    // Marcus: Put the currency, like getTotalBalanceUSD()
-    public double getTotalBalance() {
-        // Marcus: magic number
-        // Marcus: not working, use a keyset
-        double total = 0;
-        for (final BankAccount account : accounts.values()) {
-            total += account.getBalanceUSD();
+    public double getTotalBalanceUSD() {
+        double total = NO_BALANCE;
+        for (String accountId : accounts.keySet()) {
+            BankAccount account = accounts.get(accountId);
+            if (account != null) {
+                total += account.getBalanceUSD();
+            } else {
+                System.out.println("No account found for ID: " + accountId);
+            }
         }
         return total;
     }
