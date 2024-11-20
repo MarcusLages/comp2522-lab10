@@ -66,7 +66,7 @@ public class Bank {
             return accounts.get(accountId);
         } else {
             System.out.println("Account with ID " + accountId + " does not exist.");
-            return null;
+            throw new IllegalArgumentException("Account not found");
         }
     }
 

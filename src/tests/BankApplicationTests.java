@@ -77,14 +77,14 @@ public class BankApplicationTests {
 
     @Test
     void handlingInvalidAccountRetrieval() {
-//        IllegalArgumentException exception1 =
-//                assertThrows(IllegalArgumentException.class, () ->
-//                        bank1.getAccount("99999"));
-//        assertEquals("Account not found", exception1.getMessage());
-//        IllegalArgumentException exception2 =
-//                assertThrows(IllegalArgumentException.class, () ->
-//                        bank2.getAccount("00000"));
-//        assertEquals("Account not found", exception2.getMessage());
+        IllegalArgumentException exception1 =
+                assertThrows(IllegalArgumentException.class, () ->
+                        bank1.getAccount("99999"));
+        assertEquals("Account not found", exception1.getMessage());
+        IllegalArgumentException exception2 =
+                assertThrows(IllegalArgumentException.class, () ->
+                        bank2.getAccount("00000"));
+        assertEquals("Account not found", exception2.getMessage());
     }
 // Additional tests can include:
 // - Checking the initial balance correctness.
