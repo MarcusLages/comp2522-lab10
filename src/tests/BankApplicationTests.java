@@ -39,10 +39,10 @@ public class BankApplicationTests {
 
     @Test
     void cannotWithdrawMoreThanBalanceAndHandleException() {
-        IllegalArgumentException exception1 =
+        final IllegalArgumentException exception1 =
                 assertThrows(IllegalArgumentException.class, () -> account1.withdraw(1200));
         assertEquals("Insufficient funds", exception1.getMessage());
-        IllegalArgumentException exception2 =
+        final IllegalArgumentException exception2 =
                 assertThrows(IllegalArgumentException.class, () -> account2.withdraw(600));
         assertEquals("Insufficient funds", exception2.getMessage());
     }
@@ -51,10 +51,10 @@ public class BankApplicationTests {
     void addingAndRetrievingAccountFromBank() {
         BankAccount newAccount = new BankAccount("54321", 100);
         bank2.addAccount(newAccount);
-//        assertEquals(newAccount, bank2.getAccount("54321"));
+        assertEquals(newAccount, bank2.getAccount("54321"));
         BankAccount newAccount2 = new BankAccount("11111", 300);
         bank1.addAccount(newAccount2);
-//        assertEquals(newAccount2, bank1.getAccount("11111"));
+        assertEquals(newAccount2, bank1.getAccount("11111"));
     }
 
     @Test
@@ -77,15 +77,53 @@ public class BankApplicationTests {
 
     @Test
     void handlingInvalidAccountRetrieval() {
-        IllegalArgumentException exception1 =
+        final IllegalArgumentException exception1 =
                 assertThrows(IllegalArgumentException.class, () ->
                         bank1.getAccount("99999"));
+
         assertEquals("Account not found", exception1.getMessage());
-        IllegalArgumentException exception2 =
+
+        final IllegalArgumentException exception2 =
                 assertThrows(IllegalArgumentException.class, () ->
                         bank2.getAccount("00000"));
+
         assertEquals("Account not found", exception2.getMessage());
     }
+
+    @Test
+    void handlingInvalidBankAccountCreation() {
+        final IllegalArgumentException exception1 = assertThrows(IllegalArgumentException.class,
+                () -> {
+                    final BankAccount negativeBalance;
+                    negativeBalance = new BankAccount("1234", -50);
+                });
+        assertEquals("Initial balance cannot be negative.", exception1.getMessage());
+
+        final IllegalArgumentException exception2 = assertThrows(IllegalArgumentException.class,
+                () -> {
+                    final BankAccount nullName;
+                    nullName = new BankAccount(null, 500);
+                });
+        assertEquals("Invalid question/answer. Input: null", exception2.getMessage());
+
+        final IllegalArgumentException exception3 = assertThrows(IllegalArgumentException.class,
+                () -> {
+                    final BankAccount emptyName;
+                    emptyName = new BankAccount("", 500);
+                });
+        assertEquals("Invalid question/answer. Input: ", exception3.getMessage());
+
+    }
+
+    @Test
+    void handleNegativeDeposit() {
+        final IllegalArgumentException exception1 = assertThrows(IllegalArgumentException.class,
+                () -> {
+                    account1.deposit(-1);
+                });
+        assertEquals("Deposit amount must be non-negative.", exception1.getMessage());
+    }
+
 // Additional tests can include:
 // - Checking the initial balance correctness.
 // - Handling invalid operations.

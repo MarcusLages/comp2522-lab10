@@ -37,20 +37,26 @@ public class Bank {
         if (!accounts.containsKey(accountId)) {
             final BankAccount newAccount;
             newAccount = new BankAccount(accountId, initialBalance);
+
             accounts.put(accountId, newAccount);
             System.out.println("Account created: " + newAccount);
+
         } else {
             System.out.println("Account with ID " + accountId + " already exists.");
         }
     }
 
     public void addAccount(final BankAccount account) {
-        String accountId = account.getBankAccountId();
+        final String accountId;
+        accountId = account.getBankAccountId();
+
         if (!accounts.containsKey(accountId)) {
             accounts.put(accountId, account);
             System.out.println("Account added: " + account);
+
         } else {
             System.out.println("Account with ID " + accountId + " already exists.");
+
         }
     }
 
@@ -64,9 +70,11 @@ public class Bank {
     public BankAccount getAccount(final String accountId) {
         if (accountExists(accountId)) {
             return accounts.get(accountId);
+
         } else {
             System.out.println("Account with ID " + accountId + " does not exist.");
             throw new IllegalArgumentException("Account not found");
+
         }
     }
 
@@ -76,13 +84,19 @@ public class Bank {
      * @return The total balance of all accounts in the bank.
      */
     public double getTotalBalanceUSD() {
+
         double total = NO_BALANCE;
+
         for (String accountId : accounts.keySet()) {
-            BankAccount account = accounts.get(accountId);
+            final BankAccount account;
+            account = accounts.get(accountId);
+
             if (account != null) {
                 total += account.getBalanceUSD();
+
             } else {
                 System.out.println("No account found for ID: " + accountId);
+
             }
         }
         return total;
@@ -95,7 +109,9 @@ public class Bank {
     public void displayAllAccounts() {
         if (accounts.isEmpty()) {
             System.out.println("No accounts available.");
+
         } else {
+
             for (final BankAccount account : accounts.values()) {
                 System.out.println(account);
             }
@@ -119,6 +135,6 @@ public class Bank {
      * @return true if the account ID is valid (non-null and non-empty), false otherwise.
      */
     private boolean isValidAccountId(final String accountId) {
-        return accountId != null && !accountId.trim().isEmpty();
+        return (accountId != null) && (!accountId.trim().isEmpty());
     }
 }

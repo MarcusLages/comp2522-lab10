@@ -8,11 +8,11 @@ package ca.bcit.comp2522.lab10.bam;
  * @version 1.0
  */
 public class BankAccount {
+
     private double currentBalance;
     private final String bankAccountId;
     private static final int NO_FUNDS = 0;
-    //you need to add another parameter for bank account id :0
-    //Andre
+
     /**
      * Constructs a BankAccount object with the specified initial balance.
      *
@@ -20,6 +20,7 @@ public class BankAccount {
      * @throws IllegalArgumentException if the initial balance is negative.
      */
     public BankAccount(final String bankAccountId, final double initialBalance) {
+
         validateCurrentBalance(initialBalance);
         validateAccountNumber(bankAccountId);
 
@@ -46,9 +47,11 @@ public class BankAccount {
      * @throws IllegalArgumentException if the deposit amount is negative.
      */
     public void deposit(final int amount) {
+
         if (amount < NO_FUNDS) {
             throw new IllegalArgumentException("Deposit amount must be non-negative.");
         }
+
         currentBalance += amount;
     }
 
@@ -62,6 +65,7 @@ public class BankAccount {
         if (amount > currentBalance) {
             throw new IllegalArgumentException("Insufficient funds");
         }
+
         currentBalance -= amount;
     }
     /**
@@ -71,7 +75,10 @@ public class BankAccount {
      * @param bankAccountId the bank account sending money.
      * @param amount the amount to deposit, must be a positive value.
      */
-    public void transferToBank(final BankAccount bankAccountReceiver, final String bankAccountId, final int amount) {
+    public void transferToBank(final BankAccount bankAccountReceiver,
+                               final String bankAccountId,
+                               final int amount) {
+
         if (bankAccountId.equals(this.bankAccountId)) {
             bankAccountReceiver.deposit(amount);
             withdraw(amount);
@@ -84,12 +91,14 @@ public class BankAccount {
      * @throws IllegalArgumentException if the balance is negative.
      */
     public void validateCurrentBalance(final double currentBalance) {
+
         if (currentBalance < NO_FUNDS) {
             throw new IllegalArgumentException("Initial balance cannot be negative.");
         }
     }
     public void validateAccountNumber(final String accountNumber) {
-        if (accountNumber == null||accountNumber.isEmpty() || accountNumber.isBlank()) {
+
+        if (accountNumber == null || accountNumber.isEmpty() || accountNumber.isBlank()) {
             throw new IllegalArgumentException("Invalid question/answer. Input: " + accountNumber);
         }
     }
